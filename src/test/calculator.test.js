@@ -1,13 +1,11 @@
 /**
  * @file Test suite for the Calculator component.
  */
-
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { mount, shallow } from 'enzyme';
-
 import Calculator, { getSum } from '../components/calculator';
-
+type SumFunction = (a: number, b: number) => number;
 describe('Calculator component', () => {
   it('should render snapshot', () => {
     const component = renderer.create(<Calculator />);
@@ -15,12 +13,10 @@ describe('Calculator component', () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
-
   it('should return the correct sum', () => {
-    const sum = getSum(3, 5);
+    const sum: number = getSum(3, 5);
     expect(sum).toEqual(8);
   });
-
   it('should render required form elements', () => {
     const calculator = shallow(<Calculator />);
 
@@ -30,7 +26,6 @@ describe('Calculator component', () => {
     expect(form.find('button').length).toBe(1);
     expect(form.find('p.result').length).toBe(1);
   });
-
   it('should display the result on add', () => {
     const calculator = mount(<Calculator />);
 

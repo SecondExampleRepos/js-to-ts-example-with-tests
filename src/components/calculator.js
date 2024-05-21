@@ -4,22 +4,24 @@
 
 import React, { useRef, useState } from 'react';
 
-const getSum = (value1, value2) => {
+const getSum = (value1: number, value2: number): number => {
   return value1 + value2;
 };
 
-const Calculator = () => {
-  const inputValueOne = useRef(null);
-  const inputValueTwo = useRef(null);
-  const [sum, setSum] = useState(null);
+const Calculator: React.FC = () => {
+  const inputValueOne = useRef<HTMLInputElement>(null);
+  const inputValueTwo = useRef<HTMLInputElement>(null);
+  const [sum, setSum] = useState<number | null>(null);
 
-  const add = () => {
-    const result = getSum(
-      parseFloat(inputValueOne.current.value),
-      parseFloat(inputValueTwo.current.value),
-    );
+  const add = (): void => {
+    if (inputValueOne.current && inputValueTwo.current) {
+      const result = getSum(
+        parseFloat(inputValueOne.current.value),
+        parseFloat(inputValueTwo.current.value),
+      );
 
-    setSum(result);
+      setSum(result);
+    }
   };
 
   return (

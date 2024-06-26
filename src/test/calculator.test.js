@@ -17,7 +17,7 @@ describe('Calculator component', () => {
   });
 
   it('should return the correct sum', () => {
-    const sum = getSum(3, 5);
+    const sum: number = getSum(3, 5);
     expect(sum).toEqual(8);
   });
 
@@ -36,8 +36,8 @@ describe('Calculator component', () => {
 
     const form = calculator.find('form');
 
-    form.childAt(0).instance().value = 3;
-    form.childAt(1).instance().value = 5;
+    (form.childAt(0).instance() as HTMLInputElement).value = '3';
+    (form.childAt(1).instance() as HTMLInputElement).value = '5';
     form.find('button').simulate('click');
 
     const result = calculator.find('.result');
